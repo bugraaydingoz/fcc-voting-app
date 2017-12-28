@@ -19,13 +19,8 @@ router.get('/', isLoggedIn, function (req, res, next) {
 
 // if not authanticated
 router.use('/', notLoggedIn, function (req, res, next) {
+    // passport.authenticate('twitter')
     next();
-});
-
-router.get('/signin', function (req, res, next) {
-    res.json('', {
-        csrfToken: req.csrfToken()
-    });
 });
 
 router.post('/signin', passport.authenticate('twitter', {
@@ -33,7 +28,12 @@ router.post('/signin', passport.authenticate('twitter', {
     failureRedirect: '/user/signin',
 }));
 
-
+app.get('/twitter/callback', 
+  passport.authenticate('twitter', { failureRedirect: '/' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 
 
 module.exports = router;
