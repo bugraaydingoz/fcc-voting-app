@@ -1,44 +1,53 @@
-
 .header {
   margin-bottom: 20px;
 }
+
 .footer {
   text-align: center;
-  margin:40px auto;
-  font-size:12px;
-  cursor: pointer;;    
+  margin: 40px auto;
+  font-size: 12px;
+  cursor: pointer;
+  ;
 }
 
-.footer>a{
-  color:black;
+.footer>a {
+  color: black;
   text-decoration: none;
 }
 
-.footer>a>p>i{
+.footer>a>p>i {
   color: red;
 }
 
 .bg-box {
-  padding:50px 30px;
+  padding: 50px 30px;
   background-color: #E8E8E8;
   border: 1px solid #E8E8E8;
   border-radius: 4px;
   margin-bottom: 20px;
 }
 
-.fixed-size{
-  width:70%;
+.fixed-size {
+  width: 70%;
 }
 
-.btn-twitter{
+.btn-twitter {
   background-color: #4099FF;
-  color:white;
+  color: white;
 }
 
-.top-space{
-  margin-top:15px;  
+.btn-twitter > span > svg {
+  color: white !important;  
+}
+
+.top-space {
+  margin-top: 15px;
 }
 
 .bottom-space {
   margin-bottom: 30px;
+}
+
+.bottom-space-15px {
+  margin-bottom: 15px;
 }

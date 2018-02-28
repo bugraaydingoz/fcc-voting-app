@@ -1,11 +1,10 @@
 const Poll = require('../models/poll')
 const mongoose = require('mongoose')
 
-mongoose.connect('mongodb://127.0.0.1:27017/voting_app')
+mongoose.connect('mongodb://bugra:bugra@ds153198.mlab.com:53198/ba_voting_app')
 
 const polls = [
     new Poll({
-        id: 1,
         name: "Which subject you will like more?",
         options: ["Math", "Physics", "Programming", "Sports"],
         data: [5, 2, 12, 3],
@@ -13,7 +12,6 @@ const polls = [
         createdBy: "Bugra Aydingoz"
     }),
     new Poll({
-        id: 2,
         name: "What is your favourite color?",
         options: ["Blue", "Red", "Yellow", "Green"],
         data: [10, 7, 2, 13],
@@ -21,7 +19,6 @@ const polls = [
         createdBy: "Bugra Aydingoz"
     }),
     new Poll({
-        id: 3,
         name: "Do you prefer Android or iOS?",
         options: ["Android", "IOS"],
         data: [22, 23],
