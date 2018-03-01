@@ -16,6 +16,7 @@ router.post('/vote', function (req, res, next) {
     const vote = req.body.vote
     const dataIndex = req.body.dataIndex
     const isNewOption = req.body.isNewOption
+    const ip = req.headers['x-real-ip'] || req.connection.remoteAddress
 
     try {
         Poll.findOne({
@@ -24,27 +25,34 @@ router.post('/vote', function (req, res, next) {
             if (err) throw err
 
             let _poll = result
+            let _ip = _poll.ip_adresses.find(ip)
 
-            if (!isNewOption) {
-                _poll.data[dataIndex]++
-            }
-            // If user vote for a new option
-            else {
-                _poll.data.push(1)
-                _poll.options.push(vote)
-            }
+            if (!_ip) {
+                if (!isNewOption) {
+                    _poll.data[dataIndex]++;
+                    _poll.ip_adresses.push(ip)
+                }
+                // If user vote for a new option
+                else {
+                    _poll.data.push(1)
+                    _poll.options.push(vote)
+                    _poll.ip_adresses.push(ip)
+                }
 
-            Poll.update({
-                _id: id
-            }, _poll, (err, result) => {
-                if (err) throw err
-                res.setHeader('Content-Type', 'application/json');
-                res.send(JSON.stringify(result));
-            })
+                Poll.update({
+                    _id: id
+                }, _poll, (err, result) => {
+                    if (err) throw err
+                    res.setHeader('Content-Type', 'application/json');
+                    res.send(JSON.stringify(result));
+                })
+            }
         })
     } catch (e) {
         throw e
     }
+
+    res.end()
 });
 
 // POST /new

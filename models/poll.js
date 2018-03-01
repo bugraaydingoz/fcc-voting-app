@@ -21,6 +21,9 @@ const schema = new Schema({
     createdBy: {
         type: String,
         required: true
+    },
+    ip_adresses: {
+        type: Array
     }
 })
 

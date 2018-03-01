@@ -9,21 +9,24 @@ const polls = [
         options: ["Math", "Physics", "Programming", "Sports"],
         data: [5, 2, 12, 3],
         createdAt: Date(),
-        createdBy: "Bugra Aydingoz"
+        createdBy: "Bugra Aydingoz",
+        ip_adresses: []
     }),
     new Poll({
         name: "What is your favourite color?",
         options: ["Blue", "Red", "Yellow", "Green"],
         data: [10, 7, 2, 13],
         createdAt: Date(),
-        createdBy: "Bugra Aydingoz"
+        createdBy: "Bugra Aydingoz",
+        ip_adresses: []
     }),
     new Poll({
         name: "Do you prefer Android or iOS?",
         options: ["Android", "IOS"],
         data: [22, 23],
         createdAt: Date(),
-        createdBy: "Bugra Aydingoz"
+        createdBy: "Bugra Aydingoz",
+        ip_adresses: []
     })
 ]
 
