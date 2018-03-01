@@ -16,7 +16,9 @@ router.post('/vote', function (req, res, next) {
     const vote = req.body.vote
     const dataIndex = req.body.dataIndex
     const isNewOption = req.body.isNewOption
-    const ip = req.headers['x-real-ip'] || req.connection.remoteAddress
+    const ip = String(req.headers['x-forwarded-for'] || req.connection.remoteAddress)
+
+    console.log(ip)
 
     try {
         Poll.findOne({
@@ -25,7 +27,7 @@ router.post('/vote', function (req, res, next) {
             if (err) throw err
 
             let _poll = result
-            let _ip = _poll.ip_adresses.find(ip)
+            let _ip = _poll.ip_adresses.find(o => o === ip)
 
             if (!_ip) {
                 if (!isNewOption) {
@@ -51,8 +53,6 @@ router.post('/vote', function (req, res, next) {
     } catch (e) {
         throw e
     }
-
-    res.end()
 });
 
 // POST /new
